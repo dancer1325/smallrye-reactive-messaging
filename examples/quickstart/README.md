@@ -21,6 +21,17 @@ Quickstart
   * `mvn compile exec:java`
     * Problems:
       * Problem1: "An exception occurred while executing the Java class. null: DeploymentException: ObserverException: 'java.lang.Object org.jboss.logging.Logger.getMessageLogger(java.lang.invoke.MethodHandles$Lookup, java.lang.Class, java.lang.String)' -> [Help 1]"
+        * Attempt1: exclude `org.jboss.logging`
+        * Attempt2: specify NEWER
+
+            ```
+            <dependency>
+                  <groupId>org.jboss.logging</groupId>
+                  <artifactId>jboss-logging</artifactId>
+                  <version>${version.org.jboss.logging}</version>
+            </dependency>
+            ```        
+
         * Solution: TODO:
     * check the output == incoming outgoing messages
     
