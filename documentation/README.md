@@ -1,24 +1,18 @@
 # Documentation
 
-This module contains the SmallRye Reactive Messaging documentation.
-The documentation uses:
-
-- mkdocs
-- markdown
+* documentation -- based on --
+  - mkdocs
+  - markdown
 
 ## Prerequisites
 
 * python 3
 * pipenv
-
-pipenv can be installed via pip:
-```shell
-pip3 install pipenv
-```
+  * `pip3 install pipenv`
 
 ## Development
 
-Create virtualenv and install requirements:
+* TODO: Create virtualenv and install requirements:
 ```shell
 > pipenv shell
 > pipenv install
@@ -51,17 +45,17 @@ mike alias $VERSION "latest"
 
 ## Structure
 
-### The navigation
+### navigation
 
-The navigation is described in the `mkdocs.yml` file.
+* [mkdocs.yml](mkdocs.yml)
 
-### The content
+### content
 
-The documentation sources are in `src/main/docs`.
+* [here](src/main/docs)
 
 ### Attributes
 
-We extended mkdocs with a set of macros (named `docissimo`) which loads versions from Maven.
+* TODO: We extended mkdocs with a set of macros (named `docissimo`) which loads versions from Maven.
 The source of the loaded file in `src/main/resources/attributes.yaml`.
 It contains *filtered* variables, and the output (loaded by the macro) is in `target/classes/attributes.yaml`.
 

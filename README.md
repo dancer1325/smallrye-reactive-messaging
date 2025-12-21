@@ -4,18 +4,25 @@
 
 # Implementation of the MicroProfile Reactive Messaging specification
 
-This project is an implementation of the (next to be) [Eclipse MicroProfile Reactive Messaging](https://github.com/eclipse/microprofile-reactive-messaging) specification - a CDI
-extension to build event-driven microservices and data streaming applications. It provides support for:
+* implementation of the [Eclipse MicroProfile Reactive Messaging specification](https://github.com/eclipse/microprofile-reactive-messaging)
+  * == CDI extension
+  * uses
+    * build
+      * event-driven microservices
+      * data streaming applications
+  * provides
+    * support for
+      * [Apache Kafka](https://kafka.apache.org/)
+      * [MQTT](http://mqtt.org/)
+      * [AMQP](https://www.amqp.org/) 1.0
+      * [Apache Camel](https://camel.apache.org/)
+      * ...
+    * way to inject _streams_ | CDI beans
+      * -> link your [Reactive Messaging streams](https://github.com/eclipse/microprofile-reactive-streams-operators) |
+        * [CDI](http://www.cdi-spec.org/) beans
+        * [JAX-RS](https://github.com/eclipse-ee4j/jaxrs-api) resources
 
-* [Apache Kafka](https://kafka.apache.org/)
-* [MQTT](http://mqtt.org/)
-* [AMQP](https://www.amqp.org/) 1.0
-* [Apache Camel](https://camel.apache.org/)
-* And more!
-
-It also provides a way to inject _streams_ into CDI beans, and so link your [Reactive Messaging streams](https://github.com/eclipse/microprofile-reactive-streams-operators)
-into [CDI](http://www.cdi-spec.org/) beans,or [JAX-RS](https://github.com/eclipse-ee4j/jaxrs-api) resources.
-
+## [documentation](documentation/README.md)
 
 ## Branches
 
@@ -27,9 +34,9 @@ into [CDI](http://www.cdi-spec.org/) beans,or [JAX-RS](https://github.com/eclips
 
 ### Prerequisites
 
-See [PREREQUISITES.md](PREREQUISITES.md) for details.
+* [PREREQUISITES.md](PREREQUISITES.md)
 
-The build process requires Apache Maven and Java 11+ and can be performed using:
+### how to build
 
 ```bash
 mvn clean install
@@ -37,76 +44,16 @@ mvn clean install
 
 ### How to start
 
-The best way to start is to look at the `examples/quickstart` project. It's a Maven project listing the minimal set of
-dependencies and containing a single class:
+* [examples/quickstart](examples/quickstart) project
 
-```java
-package io.smallrye.reactive.messaging.quickstart;
-
-import org.eclipse.microprofile.reactive.messaging.Incoming;
-import org.eclipse.microprofile.reactive.messaging.Outgoing;
-import org.eclipse.microprofile.reactive.streams.operators.PublisherBuilder;
-import org.eclipse.microprofile.reactive.streams.operators.ReactiveStreams;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.se.SeContainerInitializer;
-
-@ApplicationScoped
-public class QuickStart {
-
-  public static void main(String[] args) {
-    SeContainerInitializer.newInstance().initialize();
-  }
-
-
-  @Outgoing("source")
-  public PublisherBuilder<String> source() {
-    return ReactiveStreams.of("hello", "with", "SmallRye", "reactive", "message");
-  }
-
-  @Incoming("source")
-  @Outgoing("processed-a")
-  public String toUpperCase(String payload) {
-    return payload.toUpperCase();
-  }
-
-  @Incoming("processed-a")
-  @Outgoing("processed-b")
-  public PublisherBuilder<String> filter(PublisherBuilder<String> input) {
-    return input.filter(item -> item.length() > 4);
-  }
-
-  @Incoming("processed-b")
-  public void sink(String word) {
-    System.out.println(">> " + word);
-  }
-
-}
-```
-
-Run the project with: `mvn compile exec:java -Dexec.mainClass=io.smallrye.reactive.messaging.quickstart.QuickStart`:
-
-```bash
->> HELLO
->> SMALLRYE
->> REACTIVE
->> MESSAGE
-```
-
-## Built With
+## -- Based on -- 
 
 * [Eclipse Vert.x](https://vertx.io/)
 * [SmallRye Mutiny](https://github.com/smallrye/smallrye-mutiny)
-* [SmallRye Reactive Stream Operators](https://github.com/smallrye/smallrye-reactive-streams-operators) (any implementation would work)
-* [Weld](https://weld.cdi-spec.org/) (any implementation would work)
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details, and the process for submitting pull requests.
-
-## Sponsors
-
-The project is sponsored by [Red Hat](https://www.redhat.com).
+* [SmallRye Reactive Stream Operators](https://github.com/smallrye/smallrye-reactive-streams-operators)
+  * valid ALSO any Microprofile reactive streams operators implementation
+* [Weld](https://weld.cdi-spec.org/)
+  * valid ALSO any CDI
 
 ## License
 

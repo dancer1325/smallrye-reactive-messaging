@@ -1,35 +1,41 @@
 Quickstart
 ==========
 
-This project illustrates how MicroProfile Reactive Messaging works.
-
-## Messaging broker
-
-This example makes no use of an external broker. Reactive messaging is done in memory.
-
-## Start the application
-
-The application can be started using:
-
-```bash
-mvn compile exec:java
-```
-
-Then, looking at the output you can see successful incoming en outgoing messages.
-
-## Logging
-
-SmallRye Reactive Messaging uses JBoss Logging.
-You can configure the output by configuring the `src/main/resources/logging.properties` and run the example with:
-
-```bash
- mvn package exec:java -Dexec.mainClass=quickstart.Main -Djava.util.logging.config.file=./src/main/resources/logging.properties
-```
-
-In this case, JBoss Logging use the JDK Logger as backend.
+* goal
+  * how MicroProfile Reactive Messaging works /
+    * Reactive messaging | in memory
+      * == ❌NO external broker❌ 
 
 ## Anatomy
 
-In addition to the commandline output, the application is composed of a single component:
+* `Main`
+  * == main entry point + (incoming and outgoing) messaging handlers
 
-* `Main` - main entry point as well a various (incoming and outgoing) messaging handlers.
+## how to start the application?
+
+* set JDK v17
+  * Reason: 🧠root project requires it🧠
+* | [root path](../../)
+  * `mvn clean install -DskipTests`
+* | this path, 
+  * `mvn compile exec:java`
+    * Problems:
+      * Problem1: "An exception occurred while executing the Java class. null: DeploymentException: ObserverException: 'java.lang.Object org.jboss.logging.Logger.getMessageLogger(java.lang.invoke.MethodHandles$Lookup, java.lang.Class, java.lang.String)' -> [Help 1]"
+        * Solution: TODO:
+    * check the output == incoming outgoing messages
+    
+        ```bash
+        >> HELLO
+        >> SMALLRYE
+        >> REACTIVE
+        >> MESSAGE
+        ```
+
+## Logging
+
+* [documentation](../../documentation/src/main/docs/concepts/logging.md)
+
+* [logging output configuration](src/main/resources/logging.properties)
+
+* `mvn package exec:java -Dexec.mainClass=quickstart.Main -Djava.util.logging.config.file=./src/main/resources/logging.properties`
+  * test logging output

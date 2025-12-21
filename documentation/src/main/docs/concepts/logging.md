@@ -1,14 +1,12 @@
 # Logging
 
-SmallRye Reactive Messaging uses [JBoss
-Logging](https://github.com/jboss-logging) as logging API. This section
-explains how to configure the loggers for various logging backends.
+* goal
+  * how to configure the loggers -- for -- various logging backends
 
-!!!tip
-    If you are developing SmallRye Reactive Messaging and wonder about how
-    the logs are managed, it uses [JBoss Logging
-    Tools](https://jboss-logging.github.io/jboss-logging-tools/#introduction).
-
+* -- based on -- [JBoss Logging](https://github.com/jboss-logging)
+  * [logs management](https://jboss-logging.github.io/jboss-logging-tools/#introduction) 
+  * uses
+    * logging API
 
 ## Logging Backends
 
