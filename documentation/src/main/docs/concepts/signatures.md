@@ -1,8 +1,7 @@
 # Supported signatures
 
-The following tables list the supported method signatures and indicate
-the various supported features. For instance, they indicate the default
-and available acknowledgement strategies (when applicable).
+* supported method signatures + supported features
+  * *SOME_VALUE* == default value
 
 ## Method signatures to generate data
 
